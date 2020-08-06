@@ -1,0 +1,119 @@
+What is done?
+
+Objectives
+ - Diagram the full stack
+ - Differentiate between client and server
+ - get user input on the client
+ - send user input from the client with fetch  to the server
+
+server
+- Store data in a database
+- Retrieve data from a database on the server
+- Retrieve data from a server on the client using fetch
+- Hide/show elements on the client
+- add elements to the page on the client
+- deploy the client with now.sh
+- deploy the database with mlab
+- deploy the server with now.sh
+
+
+*frontend
+ - create client folder 
+ - setup index.html
+ - bring in skeleton css
+     - get.skeleton.com
+     - https://cdnjs.cloudflare.com/ajax/libs/skeleton-framework/1.1.1/skeleton.min.css
+ - create header
+ - create form
+    - Name
+    - content
+    - u-full-width to both inputs
+ - listen for form submit
+ - hide the form
+ - show loading spinner
+ - get data from form and log it
+     - get user input on the client
+     - hide/show elements on the client
+
+*backend
+ - create server folder
+ - npm init -y :initialize with npm using my credentials
+ - npm install express morgan
+ - Setup index.js
+    - add -> "start": "node index.js" in package.json
+     - install nodemon for restarting server each time we are making changes automatically with command "npm i --save-dev nodemon" in server folder
+     - add "dev": "nodemon index.js" in package.json
+     - run with command- npm run dev
+ - Add GET / route
+ - Add POST /twoot route
+      - log out req.body
+
+** front-end
+ - fetch POST /twoot with form data
+      - Access-control-Allow-origin error - to get past this error we will allow all requests to be valid and do that by using cors:: command: npm i cors :: in server folder
+ - see the CORS error and revel in this moment
+ - send user input from the client with fetch to the server
+
+**back-end
+  - npm install cors
+  - make sure the erver is recieving the data
+  - add JSON body parser middleware
+  - validate name and content
+      - must be a string
+      - cannot be empty
+  - if not valid
+     - Error code 422
+     - invalid twoot, must contain name and content
+  - Setup DB connection 
+     - npm install monk (install mongoDB also)
+     - connect to db
+     - create document collection (twoot)
+  - If valid
+     - create twoot object with
+        - name, content, created date
+     - Insert into DB
+     - Respond with created twoot object
+  - Store data in a database
+
+
+**front-end
+- log out created Twoot after POST request
+- show the form
+- hide loading spinner
+
+**backend
+- get /twoots
+   - respond with twoots from DB
+- retrieve data from a datavase on the server
+
+**front-end
+
+- fetch GET /twoots
+   - Iterate over array
+   - Append each to page
+   - reverse before appending 
+   - show the form
+   - hide loading spinner
+- fetch GET /twoot after creating a twoot
+- Retrieve data from a server on the client using Fetvh
+- Hide/Show elements on the client
+- Add elements to the page on the client
+
+**Back-end
+- npm install bad-words
+  - use filter before inserting into DB 
+- npm install express-rate-limit
+  - Limit to 1 request every 15 seconds
+
+**Deploy
+
+- Deploy server with now
+  - setup environment variables
+      - Database connection
+         - process.env.MONGO_URI
+  - show mlab
+  - Deploy with environment variable
+      - now -e MONFO_URI = @meower-db
+   - add alias
+- Deploy client folder with now
+   - Set API_URL based on hostname
